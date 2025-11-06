@@ -1,0 +1,1049 @@
+/* ======== 1. IMPORTAÇÃO DAS FONTES ======== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500&display=swap');
+
+/* ======== 2. RESET BÁSICO ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* ======== 3. VARIÁVEIS DE COR E FONTES (O MENU) - PALETA TERROSA ======== */
+:root {
+    /* (NOVAS CORES) TEMA TERROSO (KARLA) */
+    --cor-fundo-base: #fcfaf5; /* Bege/Areia (Off-white) */
+    --cor-fundo-destaque: #e8f0e8; /* Verde Claro (Para a seção de depoimentos) */
+    --cor-texto-principal: #3f3a34; /* Marrom-Escuro (Para legibilidade) */
+    --cor-texto-secundario: #7a736a; /* Marrom-Médio (Para o disclaimer) */
+    --cor-destaque-ori: #b78972; /* Terracota (O novo "ouro") */
+    --cor-acento-secundario: #f0b8aa; /* Rosa Salmão (Para o hover/ação) */
+    --cor-instagram-icon: #E1306C; /* Cor oficial do Instagram */
+
+    /* Cor da Navbar semi-transparente */
+    --cor-fundo-navbar: rgba(252, 250, 245, 0.85); /* Bege com 85% de opacidade */
+
+    /* FONTES */
+    --font-titulo: 'Cormorant Garamond', serif;
+    --font-texto: 'Inter', sans-serif;
+    
+    /* Ícones Sol/Lua (SVG embutido) */
+    --icon-moon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
+    --icon-sun: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
+}
+
+[data-theme="dark"] {
+    --cor-fundo-base: #1a1820; 
+    --cor-fundo-destaque: #2a2730; 
+    --cor-texto-principal: #f0f0f0; 
+    --cor-texto-secundario: #a0a0a0; 
+    --cor-destaque-ori: #D4AF37; /* Dourado */
+    --cor-acento-secundario: #f0b8aa; 
+    --cor-fundo-navbar: rgba(26, 24, 32, 0.85);
+    --cor-instagram-icon: #E1306C; /* Mantém a cor oficial no tema dark */
+}
+
+/* ======== 4. CONFIGURAÇÕES GLOBAIS ======== */
+html {
+    scroll-behavior: smooth; 
+    font-size: 16px; 
+}
+
+body {
+    font-family: var(--font-texto);
+    background-color: var(--cor-fundo-base); 
+    color: var(--cor-texto-principal); 
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ======== 5. ESTRUTURA E UTILITÁRIOS ======== */
+.container {
+    width: 90%; 
+    max-width: 1100px; 
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.section {
+    padding: 60px 0; 
+    background-color: var(--cor-fundo-base); 
+    transition: background-color 0.3s ease;
+    
+    /* Garante que a âncora pare abaixo da navbar fixa */
+    scroll-margin-top: 100px; 
+}
+
+.section.destaque {
+    background-color: var(--cor-fundo-destaque); 
+    border-top: 1px solid var(--cor-destaque-ori); 
+    border-bottom: 1px solid var(--cor-destaque-ori); 
+    transition: background-color 0.3s ease;
+}
+
+/* ======== 6. TIPOGRAFIA (Títulos e Textos) ======== */
+h1, h2, h3, h4 {
+    font-family: var(--font-titulo);
+    color: var(--cor-destaque-ori); 
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.section h2 {
+    text-align: center;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--cor-texto-principal); 
+}
+
+a {
+    color: var(--cor-destaque-ori); 
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--cor-acento-secundario); 
+    opacity: 1; 
+}
+
+/* ======== 7. COMPONENTES PRINCIPAIS ======== */
+
+/* (HEADER / NAVBAR) */
+.navbar {
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--cor-fundo-navbar); 
+    border-bottom: 1px solid var(--cor-destaque-ori); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0; 
+    position: relative;
+}
+.logo {
+    font-family: var(--font-titulo);
+    font-size: 2.5rem; 
+    font-weight: 600;
+    line-height: 1; 
+    transition: all 0.3s ease;
+    color: var(--cor-destaque-ori); 
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; 
+}
+.nav-menu a {
+    font-size: 1rem;
+    margin-left: 0; 
+    font-weight: 500;
+    color: var(--cor-destaque-ori); 
+}
+.nav-menu a:hover {
+    color: var(--cor-acento-secundario); 
+}
+
+/* Estilo do link ATIVO (Scroll Spy) - REMOVIDO */
+
+/* BOTÃO DE MUDAR TEMA (SOL/LUA) - ESTILO DESKTOP */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px; 
+    height: 24px;
+    padding: 0;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    transition: transform 0.3s ease;
+}
+
+/* Estilos dos SVGs internos do botão de tema */
+#theme-toggle svg {
+    width: 100%;
+    height: 100%;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+/* Ícone da LUA (Tema Claro) */
+#theme-toggle .icon-moon {
+    stroke: var(--cor-destaque-ori); /* Terracota */
+    fill: none;
+}
+/* Ícone do SOL (Tema Escuro) */
+#theme-toggle .icon-sun {
+    display: none; 
+    stroke: var(--cor-destaque-ori); /* Dourado */
+    fill: var(--cor-destaque-ori); /* Preenchido Dourado */
+}
+
+#theme-toggle:hover svg {
+    stroke: var(--cor-acento-secundario);
+    fill: var(--cor-acento-secundario); /* Hover Rosa Salmão */
+}
+#theme-toggle:hover .icon-moon {
+    fill: none; /* Lua nunca é preenchida */
+}
+
+/* Quando o tema for DARK, mostra o SOL */
+[data-theme="dark"] #theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] #theme-toggle .icon-sun { 
+    display: block; 
+    stroke: var(--cor-destaque-ori); /* Dourado */
+    fill: var(--cor-destaque-ori); /* Dourado */
+}
+[data-theme="dark"] #theme-toggle:hover .icon-sun {
+    stroke: var(--cor-acento-secundario); /* Rosa */
+    fill: var(--cor-acento-secundario); /* Rosa */
+}
+
+
+/* (ESTILOS DO HAMBURGER) */
+.hamburger-menu {
+    display: none; 
+    cursor: pointer;
+}
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--cor-destaque-ori); 
+    transition: all 0.3s ease-in-out;
+}
+
+/* (HERO SECTION) */
+.hero {
+    min-height: 80vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 0; 
+    position: relative;
+    z-index: 1; 
+}
+.hero.section {
+    background-color: var(--cor-fundo-base); 
+}
+
+.hero .subtitulo {
+    font-size: 1.2rem;
+    color: var(--cor-texto-secundario); 
+    margin-bottom: 2rem;
+}
+.hero .frase-orgulho {
+    font-family: var(--font-titulo);
+    font-size: 1.2rem;
+    color: var(--cor-destaque-ori); 
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+/* (BOTÃO CTA PRINCIPAL) */
+.cta-button {
+    font-family: var(--font-texto);
+    background-color: var(--cor-destaque-ori); 
+    color: var(--cor-fundo-base); 
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-block;
+    border: 2px solid var(--cor-destaque-ori); 
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+    min-width: 150px; 
+    min-height: 45px; 
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-button:hover {
+    background-color: var(--cor-acento-secundario); 
+    border-color: var(--cor-acento-secundario); 
+    color: var(--cor-fundo-base); 
+    opacity: 1;
+}
+
+/* SPINNER DE CARREGAMENTO (PURO CSS) */
+.spinner {
+    display: none; 
+    width: 18px;
+    height: 18px;
+    color: var(--cor-fundo-base); 
+    animation: spin 1s linear infinite; 
+}
+.spinner svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor; 
+    fill: none;
+}
+
+/* ESTADO DE CARREGAMENTO DO BOTÃO */
+.cta-button.is-loading {
+    opacity: 0.8; 
+    pointer-events: none; 
+}
+.cta-button.is-loading .btn-text {
+    display: none; 
+}
+.cta-button.is-loading .spinner {
+    display: block; 
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* (GALERIA) */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 1.5rem;
+}
+.card-servico {
+    background-color: var(--cor-fundo-destaque); 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer; 
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.card-servico:hover {
+    transform: translateY(-5px); 
+}
+
+/* ESTILO DO PLACEHOLDER DE VÍDEO */
+.video-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: #dbe6db; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video-placeholder svg {
+    width: 64px; 
+    height: 64px;
+    stroke: var(--cor-destaque-ori); 
+    fill: none;
+}
+[data-theme="dark"] .video-placeholder {
+    background-color: #3e4a3e; 
+}
+
+
+.card-servico h4, .card-servico .disclaimer {
+    padding: 1rem;
+}
+.card-servico .disclaimer {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario); 
+    padding-top: 0;
+}
+
+/* (FRASES DE ORGULHO) */
+.frase-orgulho {
+    font-family: var(--font-titulo);
+    font-size: 1.5rem;
+    color: var(--cor-destaque-ori); 
+    text-align: center;
+    padding: 2rem 0;
+    font-weight: 600;
+}
+
+/* SEÇÃO DE CONTADORES (STATS) */
+.stats-section {
+    background-color: var(--cor-fundo-base);
+    padding-bottom: 40px; 
+}
+.stats-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    gap: 1.5rem;
+    text-align: center;
+    padding-top: 1rem; 
+}
+.stat-item {
+    flex-basis: 150px; 
+}
+.stat-number {
+    font-family: var(--font-titulo);
+    font-size: 3rem; 
+    color: var(--cor-destaque-ori); 
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+}
+.stat-label {
+    font-size: 1rem;
+    color: var(--cor-texto-secundario); 
+    margin: 0;
+}
+
+
+/* (DEPOIMENTOS) */
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+}
+.card-depoimento {
+    background-color: var(--cor-fundo-base); 
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 5px solid var(--cor-destaque-ori); 
+    transition: background-color 0.3s ease;
+}
+.card-depoimento p {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--cor-texto-principal); 
+}
+.card-depoimento span {
+    font-weight: 500;
+    color: var(--cor-texto-secundario); 
+    margin-top: 1rem;
+    display: block;
+}
+
+/* (CONTATO) */
+.texto-localizacao {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--cor-texto-secundario); 
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+.botoes-contato {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap; 
+}
+
+/* ESTILOS DO "CLICK TO COPY" (PIX) */
+.pix-copy-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; 
+    background-color: var(--cor-fundo-destaque); 
+    border: 1px dashed var(--cor-destaque-ori); 
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto 2rem auto; 
+    text-align: center;
+    position: relative; 
+}
+.pix-text {
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+}
+#pix-key {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+}
+#copy-pix-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    
+    /* (CORRIGIDO) Esta é a âncora para o tooltip */
+    position: relative; 
+}
+#copy-pix-btn svg {
+    width: 20px; 
+    height: 20px;
+    stroke: var(--cor-destaque-ori); 
+    fill: none; 
+    transition: stroke 0.2s ease;
+}
+#copy-pix-btn:hover {
+    background-color: rgba(0,0,0,0.05); 
+}
+#copy-pix-btn:hover svg {
+    stroke: var(--cor-acento-secundario); 
+}
+/* O balão "Copiado!" (Tooltip) */
+.tooltip-copy {
+    position: absolute;
+    bottom: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor-texto-principal); 
+    color: var(--cor-fundo-base); 
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: nowrap; 
+}
+/* Classe que o JS vai adicionar */
+.tooltip-copy.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* (BARRA DE NOTIFICAÇÃO) */
+.notification-bar {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    
+    background-color: var(--cor-destaque-ori); 
+    color: var(--cor-fundo-base); 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    transition: all 0.5s ease; 
+}
+.notification-bar p {
+    color: var(--cor-fundo-base); 
+    margin: 0;
+    font-weight: 500;
+}
+.close-notification {
+    background: none;
+    border: none;
+    font-size: 1.5rem; 
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    padding: 0; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+.close-notification svg {
+    width: 24px; 
+    height: 24px;
+    stroke: var(--cor-fundo-base); 
+    fill: none;
+}
+.close-notification:hover {
+    opacity: 1;
+}
+/* Classe que o JS vai adicionar */
+.notification-bar.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0 1rem;
+    margin: 0 auto;
+    border: none;
+}
+
+
+/* (FOOTER) */
+.footer {
+    border-top: 1px solid var(--cor-destaque-ori); 
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario); 
+    background-color: var(--cor-fundo-base); 
+    transition: background-color 0.3s ease;
+}
+.footer p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario); 
+    margin: 0.25rem 0;
+}
+
+.footer .desenvolvido-por a {
+    color: var(--cor-destaque-ori); 
+    font-weight: 600;
+    display: inline-flex; 
+    align-items: center;
+    gap: 0.3rem; 
+}
+
+.footer .desenvolvido-por a:hover {
+    color: var(--cor-acento-secundario); 
+}
+
+/* (CORRIGIDO AQUI) Cor oficial do Instagram no SVG */
+.footer .desenvolvido-por svg { 
+    width: 18px; 
+    height: 18px;
+    stroke: var(--cor-instagram-icon); /* Usa a variável com a cor oficial */
+    fill: none;
+    position: relative;
+    top: -1px; 
+    vertical-align: middle;
+    transition: stroke 0.3s ease;
+}
+
+.footer .desenvolvido-por a:hover svg {
+    stroke: var(--cor-instagram-icon); /* (CORRIGIDO) Mantém a cor do Instagram no hover */
+}
+
+
+/* ======== 8. EFEITOS (O TOQUE MESTRE) ======== */
+
+/* (EFEITO BRILHO BOTÃO) */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; 
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    background: linear-gradient(
+        60deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent
+    );
+    transition: left 0.7s ease-in-out;
+}
+.cta-button:hover::before {
+    left: 100%; 
+}
+
+/* ANIMAÇÃO DE FADE-IN NO SCROLL */
+.fade-in {
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.is-visible {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+
+/* ======== 9. MEDIA QUERIES (RESPONSIVIDADE - O MENU SANTUÁRIO) ======== */
+@media (max-width: 768px) {
+    .navbar .container {
+        justify-content: center;
+    }
+    .hamburger-menu {
+        display: block; 
+        position: absolute;
+        right: 0; 
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002; 
+    }
+    .nav-menu {
+        position: fixed;
+        left: -100%; 
+        top: 0;
+        width: 100%;
+        height: 100vh; 
+        background-color: var(--cor-fundo-base); 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.4s ease-in-out;
+        z-index: 1001; 
+        gap: 0; 
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .nav-menu a {
+        font-family: var(--font-titulo); 
+        font-size: 2rem; 
+        margin: 1.2rem 0; 
+        font-weight: 600;
+        transition: transform 0.2s ease, color 0.2s ease; 
+    }
+    .nav-menu a:active {
+        transform: scale(1.1); 
+        color: var(--cor-acento-secundario); 
+    }
+    
+    /* (CORRIGIDO) Estilo do Botão de Tema no Mobile */
+    #theme-toggle {
+        font-size: 1rem; 
+        font-weight: normal;
+        color: inherit;
+        background-color: transparent; 
+        padding: 0;
+        border-radius: 0;
+        margin-top: 1.5rem; 
+        width: 32px; 
+        height: 32px;
+    }
+    #theme-toggle svg {
+        width: 100%;
+        height: 100%;
+        stroke: var(--cor-destaque-ori); 
+    }
+    #theme-toggle:hover {
+        background-color: transparent; 
+    }
+    #theme-toggle:hover svg {
+         stroke: var(--cor-acento-secundario);
+    }
+    /* (CORRIGIDO) Cor do ícone do SOL no mobile */
+    [data-theme="dark"] #theme-toggle .icon-sun {
+        stroke: var(--cor-destaque-ori); 
+        fill: var(--cor-destaque-ori); 
+    }
+    [data-theme="dark"] #theme-toggle:hover .icon-sun {
+        stroke: var(--cor-acento-secundario); 
+        fill: var(--cor-acento-secundario); 
+    }
+
+    
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0; 
+    }
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .depoimentos-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    /* (Ajuste para o Bloco PIX no mobile) */
+    .pix-copy-wrapper {
+        flex-direction: column; 
+        gap: 0.25rem;
+    }
+    .pix-text {
+        font-size: 0.9rem;
+    }
+    #pix-key {
+        font-size: 1rem;
+    }
+    
+    /* (Ajuste dos Contadores no mobile) */
+    .stats-container {
+        gap: 2rem; 
+    }
+    .stat-number {
+        font-size: 2.5rem; 
+    }
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    /* (Ajuste da Barra de Notificação no mobile) */
+    .notification-bar {
+        text-align: left; 
+        gap: 0.5rem; 
+    }
+    .notification-bar p {
+        font-size: 0.9rem;
+    }
+    .close-notification {
+        padding: 5px; 
+    }
+}
+
+/* ======== 10. LIGHTBOX (AMPLIAÇÃO DE IMAGENS) ======== */
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 90vw; 
+    max-width: 1000px; 
+    max-height: 90vh; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    
+    transform: scale(0.8); 
+    transition: transform 0.3s ease;
+}
+
+.lightbox-overlay.active .lightbox-content {
+    transform: scale(1); 
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block; 
+    border-radius: 8px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Placeholder de vídeo DENTRO do lightbox */
+.lightbox-video-placeholder {
+    display: none; 
+    width: 100%; 
+    aspect-ratio: 16 / 9; 
+    background-color: var(--cor-fundo-destaque);
+    border-radius: 8px;
+    
+    position: relative;
+    overflow: hidden; 
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-video-placeholder svg { 
+    width: 128px; 
+    height: 128px;
+    stroke: var(--cor-destaque-ori); 
+    fill: none;
+}
+
+
+/* Estilo para o iframe do vídeo quando ele for inserido */
+.lightbox-video-placeholder iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px; 
+}
+
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--cor-destaque-ori); 
+    font-size: 40px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0,0,0,0.7); 
+    background: none; 
+    border: none; 
+    padding: 0; 
+    line-height: 1;
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-close svg {
+    width: 30px; 
+    height: 30px;
+    stroke: var(--cor-destaque-ori); 
+    fill: none;
+    transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+
+.lightbox-close:hover svg {
+    stroke: var(--cor-acento-secundario); 
+    transform: scale(1.1);
+}
+
+/* ======== 11. MODAL DE CONFIRMAÇÃO (WHATSAPP) ======== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-base);
+    color: var(--cor-texto-principal);
+    padding: 2.5rem 2rem 2rem 2rem; 
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    
+    transform: scale(0.9); 
+    transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h3 {
+    font-family: var(--font-titulo);
+    color: var(--cor-destaque-ori);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.modal-content p {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+.modal-close svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--cor-texto-secundario); 
+    transition: all 0.2s ease;
+}
+.modal-close:hover svg {
+    stroke: var(--cor-destaque-ori);
+    transform: scale(1.1);
+}
+
+.modal-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap; 
+}
+
+/* Botão "Cancelar" */
+.cta-button.secondary {
+    background-color: transparent;
+    color: var(--cor-destaque-ori);
+    border: 2px solid var(--cor-fundo-destaque); 
+}
+.cta-button.secondary:hover {
+    background-color: var(--cor-fundo-destaque); 
+    color: var(--cor-texto-principal);
+    border-color: var(--cor-fundo-destaque);
+}
+
+/* ======== 12. BOTÃO VOLTAR AO TOPO ======== */
+.voltar-ao-topo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999; 
+    
+    background-color: var(--cor-destaque-ori); 
+    color: var(--cor-fundo-base); 
+    
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+
+.voltar-ao-topo.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.voltar-ao-topo svg {
+    width: 24px; 
+    height: 24px;
+    stroke: var(--cor-fundo-base); 
+    fill: none;
+}
+
+.voltar-ao-topo:hover {
+    background-color: var(--cor-acento-secundario); 
+    color: var(--cor-fundo-base); 
+    opacity: 1;
+}
